@@ -19,6 +19,6 @@ socket.io for flutter by adhara
   s.dependency 'Starscream'
 
   s.swift_version = '5.0'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 end
 
