@@ -73,11 +73,11 @@ public class AdharaSocket: NSObject, FlutterPlugin {
                 result(nil)
             case "emit":
                 let eventName: String = arguments["eventName"] as! String
-                let data: [Any] = arguments["arguments"] as! [Any]
+                let data: [SocketData] = arguments["arguments"] as! [SocketData]
                 let reqId: String? = arguments["reqId"] as? String
                 self.log("emitting:::", data, ":::to:::", eventName);
                 if (reqId == nil) {
-                    socket.emit(eventName, with: data)
+                    socket.emit(eventName, with: data, completion: completion)
                 } else {
                     socket.emitWithAck(eventName, with: data).timingOut(after: 0) { data in 
                         self.channel.invokeMethod("incomingAck", arguments: [
@@ -103,6 +103,9 @@ public class AdharaSocket: NSObject, FlutterPlugin {
         //        Do nothing...
     }
     
+    func completion() {
+        //        Callback called on transport write completion
+    }
 }
 
 public class AdharaSocketIOClientConfig: NSObject{
