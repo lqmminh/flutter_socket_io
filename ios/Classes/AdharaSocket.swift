@@ -88,7 +88,7 @@ public class AdharaSocket: NSObject, FlutterPlugin {
                         }
                     }
                 } catch {
-                    self.log("Error emitting:::", eventName, "\(error)");
+                    self.log("Error emitting:::", "\(error)");
                 }
                 result(nil)
             case "isConnected":
